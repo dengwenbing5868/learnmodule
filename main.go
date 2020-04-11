@@ -1,30 +1,31 @@
 package main
 
 import (
-"net/http"
-"os"
-"time"
+	"fmt"
+	"net/http"
+	"os"
+	"time"
 
-"github.com/gorilla/mux"
-log "github.com/sirupsen/logrus"
+	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
-log.SetFormatter(&log.JSONFormatter{})
-log.SetOutput(os.Stdout)
+	log.SetFormatter(&log.JSONFormatter{})
+	log.SetOutput(os.Stdout)
 
-mtx := mux.NewRouter()
-mtx.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-log.WithField("user-agent", r.UserAgent()).Info("accessed home page")
-_, _ = w.Write([]byte("Hello World!"))
-})
+	mtx := mux.NewRouter()
+	mtx.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.WithField("user-agent", r.UserAgent()).Info("accessed home page")
+		_, _ = w.Write([]byte("Hello World!"))
+	})
 
-srv := &http.Server{
-Handler:      mtx,
-Addr:         "127.0.0.1:8000",
-WriteTimeout: 10 * time.Second,
-ReadTimeout:  10 * time.Second,
-}
-
-log.Fatal(srv.ListenAndServe())
+	srv := &http.Server{
+		Handler:      mtx,
+		Addr:         "127.0.0.1:8000",
+		WriteTimeout: 10 * time.Second,
+		ReadTimeout:  10 * time.Second,
+	}
+	fmt.Println("test push after editing")
+	log.Fatal(srv.ListenAndServe())
 }
