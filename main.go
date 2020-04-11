@@ -27,6 +27,9 @@ func main() {
 		ReadTimeout:  10 * time.Second,
 	}
 	fmt.Println("test push after editing")
-
+	Print()
+	Print2()
 	log.Fatal(srv.ListenAndServe())
+	fmt.Println("test push after reverting commit")
+
 }
