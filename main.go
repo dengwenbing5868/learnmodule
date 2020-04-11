@@ -28,5 +28,7 @@ func main() {
 	}
 	fmt.Println("test push after editing")
 	fmt.Println("test pull after editing")
+	Print()
+	Print2()
 	log.Fatal(srv.ListenAndServe())
 }
