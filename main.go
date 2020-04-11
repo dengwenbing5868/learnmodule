@@ -27,8 +27,6 @@ func main() {
 		ReadTimeout:  10 * time.Second,
 	}
 	fmt.Println("test push after editing")
-	fmt.Println("test pull after editing")
-	Print()
-	Print2()
+
 	log.Fatal(srv.ListenAndServe())
 }
